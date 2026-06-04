@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>العداد التنازلي للمناسبات</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>⏳ العدّ التنازلي</h1>
+    <p class="subtitle">كم باقي على مناسباتك المهمة؟</p>
+  </header>
+
+  <main class="container">
+    <!-- نموذج إضافة موعد -->
+    <section class="card add-card">
+      <h2>إضافة موعد جديد</h2>
+      <form id="event-form">
+        <div class="field">
+          <label for="title">اسم المناسبة</label>
+          <input type="text" id="title" placeholder="مثال: موعد كأس العالم" required maxlength="60" />
+        </div>
+        <div class="field">
+          <label for="date">التاريخ والوقت</label>
+          <input type="datetime-local" id="date" required />
+        </div>
+        <button type="submit" class="btn-primary">➕ أضف الموعد</button>
+      </form>
+    </section>
+
+    <!-- قائمة المواعيد -->
+    <section id="events" class="events"></section>
+
+    <!-- حالة فارغة -->
+    <div id="empty-state" class="empty-state">
+      <div class="empty-icon">📅</div>
+      <p>ما عندك أي مواعيد بعد.</p>
+      <p class="muted">أضف موعدك الأول من الأعلى.</p>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>تُحفظ مواعيدك في متصفحك فقط 🔒</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
