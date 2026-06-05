@@ -10,10 +10,16 @@ import { StatusBadge } from '@/components/status-badge';
 import { StadiumSection } from '@/components/stadium-section';
 import { FavoriteButton } from '@/components/favorite-button';
 import { NotifyButton } from '@/components/notify-button';
-import { getMatchById } from '@/lib/data';
+import { getMatchById, getMatches } from '@/lib/data';
 import { flagUrl, formatMatchDate, formatMatchTime, localTimeZone } from '@/lib/format';
 
-export const dynamic = 'force-dynamic';
+// Pre-render every match page at build time (required for static export).
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const matches = await getMatches();
+  return matches.map((m) => ({ id: m.id }));
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;

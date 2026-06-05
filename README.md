@@ -145,6 +145,50 @@ implement another branch in `fetchWorldCupFixtures` for Football-Data.org, etc.
 
 ---
 
+## 🌐 Deployment — GitHub Pages (automated)
+
+This repo is configured to build a **static export** and publish to GitHub Pages
+via GitHub Actions ([`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)).
+
+**One-time setup:**
+
+1. Push the code to GitHub (the workflow runs on pushes to `main` and the
+   `claude/fifa-world-cup-website-DY23O` branch).
+2. In the repo, go to **Settings → Pages → Build and deployment → Source** and
+   choose **GitHub Actions**.
+3. That's it. On the next push the workflow builds and deploys automatically.
+   Your site goes live at:
+
+   ```
+   https://<your-username>.github.io/<repo-name>/
+   ```
+
+   For this repo that is **https://kh2x1.github.io/Countdown/**.
+
+**How it works / notes:**
+
+- The workflow derives `NEXT_PUBLIC_BASE_PATH` (`/<repo-name>`) and the site URL
+  automatically from `GITHUB_REPOSITORY`, so the sub-path routing, assets,
+  manifest, and sitemap all resolve correctly — no manual edits needed.
+- `next.config.mjs` uses `output: 'export'` with `images.unoptimized` (Pages has
+  no Node server to run the image optimizer).
+- Static hosting means data is baked at **build time** (from seed data, or from
+  Supabase if you add `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  as repo **Secrets**). Countdown timers still run **live in the browser**;
+  re-run the workflow (or schedule it) to refresh match statuses/scores.
+- If a deployment is blocked because it isn't running from the default branch,
+  either merge this branch into `main`, or allow the branch under
+  **Settings → Environments → github-pages → Deployment branches**.
+
+**Build it locally the same way Pages does:**
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/Countdown npm run build   # outputs static site to ./out
+npx serve out                                    # preview
+```
+
+---
+
 ## ☁️ Deployment (Vercel)
 
 1. Push this repo to GitHub.

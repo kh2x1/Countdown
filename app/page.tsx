@@ -6,9 +6,6 @@ import { getMatches } from '@/lib/data';
 import { STADIUMS } from '@/lib/seed-data';
 import type { Match } from '@/lib/types';
 
-// Re-render on every request so live status / countdowns stay fresh.
-export const dynamic = 'force-dynamic';
-
 function pickFeatured(matches: Match[]): Match | null {
   const live = matches.find((m) => m.status === 'live');
   if (live) return live;

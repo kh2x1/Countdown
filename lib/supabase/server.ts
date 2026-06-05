@@ -1,5 +1,4 @@
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 
 export function isSupabaseConfigured() {
   return Boolean(
@@ -9,24 +8,16 @@ export function isSupabaseConfigured() {
 }
 
 /**
- * Server Supabase client (read-only cookie handling is sufficient here since
- * the dashboard does not require authenticated mutations). Returns `null` when
- * the project is not configured.
+ * Server-side Supabase client for public, read-only data. Uses the plain
+ * supabase-js client (no cookies / next/headers) so it stays compatible with
+ * static export builds. Returns `null` when the project is not configured.
  */
 export async function createClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key) return null;
 
-  const cookieStore = await cookies();
-  return createServerClient(url, key, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll();
-      },
-      setAll() {
-        // No-op: the public dashboard never needs to write cookies.
-      },
-    },
+  return createSupabaseClient(url, key, {
+    auth: { persistSession: false },
   });
 }

@@ -1,5 +1,4 @@
 import 'server-only';
-import { unstable_noStore as noStore } from 'next/cache';
 import type { Match, MatchStatus, Stadium, Team } from './types';
 import { getSeedMatches } from './seed-data';
 import { createClient, isSupabaseConfigured } from './supabase/server';
@@ -81,7 +80,6 @@ const MATCH_SELECT = `
  * bundled seed fixtures when Supabase is unconfigured or unreachable.
  */
 export async function getMatches(): Promise<Match[]> {
-  noStore();
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();

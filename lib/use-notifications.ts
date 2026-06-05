@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { withBasePath } from './base-path';
 
 const STORAGE_KEY = 'wc2026:reminders';
 const EVENT = 'wc2026:reminders-changed';
@@ -49,7 +50,7 @@ export function useNotifications() {
           if (Notification.permission === 'granted') {
             new Notification('⚽ Kickoff soon!', {
               body: 'A match you follow starts in about 15 minutes.',
-              icon: '/icons/icon-192.png',
+              icon: withBasePath('/icons/icon-192.png'),
               tag: `wc-${id}`,
             });
           }

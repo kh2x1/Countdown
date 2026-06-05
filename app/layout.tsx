@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SiteHeader } from '@/components/site-header';
+import { withBasePath } from '@/lib/base-path';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     'World Cup fixtures',
     'World Cup stadiums',
   ],
-  manifest: '/manifest.webmanifest',
+  manifest: withBasePath('/manifest.webmanifest'),
   openGraph: {
     title: 'World Cup 2026 Match Center',
     description:
@@ -37,8 +38,8 @@ export const metadata: Metadata = {
     description: 'Live countdown timers for every FIFA World Cup 2026 match.',
   },
   icons: {
-    icon: '/icons/icon-192.png',
-    apple: '/icons/icon-192.png',
+    icon: withBasePath('/icons/icon-192.png'),
+    apple: withBasePath('/icons/icon-192.png'),
   },
 };
 
