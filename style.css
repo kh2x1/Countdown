@@ -74,7 +74,7 @@ button {
 }
 button:hover { background: var(--accent-2); }
 button:active { transform: scale(.97); }
-button:disabled { opacity: .5; cursor: not-allowed; }
+button:disabled { opacity: .45; cursor: not-allowed; }
 
 /* شريط المستخدم */
 .user-bar {
