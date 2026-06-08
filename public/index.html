@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جمعية الأشهر</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" />
+</head>
+<body>
+  <main class="container">
+    <header class="head">
+      <h1>💰 جمعية الأشهر</h1>
+      <p class="subtitle">جمعية من <strong>٣٠٠ ريال</strong> — كل شخص يحجز شهر يستلم فيه الجمعية</p>
+    </header>
+
+    <!-- شاشة تسجيل الدخول -->
+    <section id="loginCard" class="card login hidden">
+      <h2>تسجيل الدخول</h2>
+      <p class="muted">اكتب اسمك للدخول والبدء بالحجز</p>
+      <form id="loginForm" autocomplete="off">
+        <input id="nameInput" type="text" placeholder="اكتب اسمك هنا" maxlength="40" required />
+        <button type="submit">دخول</button>
+      </form>
+      <p id="loginError" class="error"></p>
+    </section>
+
+    <!-- شريط المستخدم -->
+    <section id="userBar" class="user-bar hidden">
+      <span>مرحباً، <strong id="userName"></strong> 👋</span>
+      <button id="logoutBtn" class="link-btn">تسجيل الخروج</button>
+    </section>
+
+    <!-- جدول الأشهر -->
+    <section id="boardCard" class="card hidden">
+      <div class="board-head">
+        <span>الشهر</span>
+        <span>محجوز لـ</span>
+        <span></span>
+      </div>
+      <ul id="monthsList" class="months"></ul>
+      <p id="boardMsg" class="msg"></p>
+    </section>
+
+    <footer class="note">
+      جمعية من ٣٠٠ ريال يتم تحويل الجمعية نهاية كل شهر ميلادي حسب الراتب،
+      بحد أقصى أسبوع لا أكثر من ٢٧ إلى ١ من الشهر التالي.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
